@@ -26,6 +26,7 @@ public class ItemServiceTest extends AbstractTestNGSpringContextTests {
         Item item = new Item.ItemBuilder()
                 .itemCode(0L)
                 .itemName("Milk")
+                .itemPrice(10.00)
                 .build();
         Item itemRecord = service.create(item);
         Assert.assertNotNull(itemRecord);

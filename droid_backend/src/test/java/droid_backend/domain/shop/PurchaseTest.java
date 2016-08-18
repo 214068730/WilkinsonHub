@@ -30,9 +30,9 @@ public class PurchaseTest extends TestCase {
         Employee employee = EmployeeFactory.getEmployee(0001L, "Kashiefa", "Cottle", employeeAddress);
 
         //Item'
-        Item item1 = ItemFactory.getItem(100L, "Chocolate");
-        Item item2 = ItemFactory.getItem(101L, "Bread");
-        Item item3 = ItemFactory.getItem(102L, "Milk");
+        Item item1 = ItemFactory.getItem(100L, "Chocolate",4.00);
+        Item item2 = ItemFactory.getItem(101L, "Bread",12.00);
+        Item item3 = ItemFactory.getItem(102L, "Milk",10.00);
 
         ShopProcess process = ProcessFactory.startProcess(00001L, customer, employee,item1);
        // Assert.assertEquals(00001L,Integer.parseInt(process.getOrderNo()));

@@ -18,17 +18,17 @@ public class Item implements Serializable {
     @GeneratedValue(strategy= GenerationType.AUTO)
     Long itemCode;
     String itemName;
+    double price;
     Date dateCreated;
     //Map<Long,Date> itemEventHistory = new HashMap();
 
-
     private Item() {
-
     }
 
     public Item(ItemBuilder itemBuilder) {
         this.itemCode = itemBuilder.itemCode;
         this.itemName = itemBuilder.itemName;
+        this.price = itemBuilder.price;
         DateFormat dateFormat;
         dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         dateCreated = new Date();
@@ -44,8 +44,7 @@ public class Item implements Serializable {
 
     @Override
     public String toString() {
-        return
-                "itemCode='" + itemCode + '\'' +", itemName='" + itemName;
+        return "itemCode='" + itemCode + '\'' +", itemName='" + itemName;
     }
 
    // @Override
@@ -66,9 +65,15 @@ public class Item implements Serializable {
     public static class ItemBuilder{
         Long itemCode;
         String itemName;
+        double price;
 
         public ItemBuilder itemCode(Long itemCode){
             this.itemCode = itemCode;
+            return this;
+        }
+
+        public ItemBuilder itemPrice(double price){
+            this.price = price;
             return this;
         }
 
@@ -80,6 +85,7 @@ public class Item implements Serializable {
         public ItemBuilder copy(Item item){
             this.itemCode = item.itemCode;
             this.itemName = item.itemName;
+            this.price = item.price;
             return this;
         }
 

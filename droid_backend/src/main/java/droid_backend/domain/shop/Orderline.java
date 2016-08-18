@@ -19,6 +19,7 @@ public class Orderline implements Serializable {
     @Id
     Long orderID;
     Long productID;
+    int quantity;
     public Orderline(){}
 
     public Orderline(OrderLineBuilder orderLineBuilder) {

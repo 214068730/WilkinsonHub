@@ -110,9 +110,11 @@ public class ShopProcess implements PaymentMethod, ItemCollection,PrintReciepts,
             return this;
         }
 
-        public BuildProcess copy(Customer customer, Employee employee){
-            this.customer = customer;
-            this.employee = employee;
+        public BuildProcess copy(ShopProcess order){
+            this.orderNo = order.orderNo;
+            this.customer = order.customer;
+            this.employee = order.employee;
+            this.item = order.item;
             return this;
         }
 

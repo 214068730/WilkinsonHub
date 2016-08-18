@@ -13,13 +13,13 @@ public class ItemTest extends TestCase {
 
     @Test
     public void testCreateItem() throws Exception {
-        Item item1 = ItemFactory.getItem(100L,"Chocolate");
+        Item item1 = ItemFactory.getItem(100L,"Chocolate",4.00);
         Assert.assertEquals(item1.getItemName(),"Chocolate");
     }
 
     @Test
     public void testItemUpdate() throws Exception {
-        Item item = ItemFactory.getItem(100L,"Chocolate");
+        Item item = ItemFactory.getItem(100L,"Chocolate",4.00);
         Item itemUpdate = new Item.ItemBuilder()
                 .copy(item)
                 .itemName("Becon Chocolate")

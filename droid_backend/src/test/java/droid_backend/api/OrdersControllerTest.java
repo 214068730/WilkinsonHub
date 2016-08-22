@@ -29,16 +29,26 @@ public class OrdersControllerTest extends AbstractTestNGSpringContextTests {
     public void testCreate(){
         String URI = "http://localhost:8080/shop/sales/create";
             RestTemplate restTemplate = new RestTemplate();
-            Item item = ItemFactory.getItem(5L,"",50.00);
-            //opProcess process = ProcessFactory.startProcess(0L,Integer.parseInt(1L+""),Integer.parseInt(5L+""), item);
-            ShopProcess process = new ShopProcess.BuildProcess()
+
+
+        //Customer
+        String C_URI =  "http://localhost:8080/shop/{id}";
+        Customer customer = restTemplate.getForObject(C_URI,Customer.class, "3");
+
+        //Employee
+        String E_URI =  "http://localhost:8080/shop/employee/{id}";
+        Employee employee = restTemplate.getForObject(E_URI,Employee.class, "1");
+
+        Item item = ItemFactory.getItem(5L,"",50.00);
+        //opProcess process = ProcessFactory.startProcess(0L,Integer.parseInt(1L+""),Integer.parseInt(5L+""), item);
+        ShopProcess process = new ShopProcess.BuildProcess()
                     .orderNo(0L)
-                    .customer(5)
-                    .employee(1)
+                    .customer(Integer.parseInt(customer.getCustomerCode()+""))
+                    .employee(Integer.parseInt(employee.getEmpCode()+""))
                     .date()
                     .build();
-            restTemplate.postForObject(URI,process,ShopProcess.class);
-//           Assert.assertEquals(order.getCustomerID(),new Long(1));
+        restTemplate.postForObject(URI,process,ShopProcess.class);
+//       Assert.assertEquals(order.getCustomerID(),new Long(1));
         }
 
 

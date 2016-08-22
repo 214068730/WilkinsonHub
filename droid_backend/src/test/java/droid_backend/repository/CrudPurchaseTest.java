@@ -41,7 +41,7 @@ public class CrudPurchaseTest extends AbstractTestNGSpringContextTests{
         /*AddressVO customerAddress = AddressFactory.getAddress("7798", "15 Sparrow", "Rocklands");
         Customer customer = CustomerFactory.getCustomer(1000L, "Shireen", customerAddress);*/
         Customer customerRecord = customerRepository.findOne(1L);
-        Assert.assertNotNull(customerRecord);
+        //Assert.assertNotNull(customerRecord);
 
         //Employee
         /*AddressVO employeeAddress = AddressFactory.getAddress("1785", "57 Spitz Way", "Strandfontien");
@@ -57,8 +57,8 @@ public class CrudPurchaseTest extends AbstractTestNGSpringContextTests{
         //generate order
         ShopProcess process = new  ShopProcess.BuildProcess()
                 .orderNo(0L)
-                .customer(customerRecord)
-                .employee(employeeRecord)
+                .customer(Integer.parseInt(customerRecord.getCustomerCode()+""))
+                .employee(Integer.parseInt(employeeRecord.getEmpCode()+""))
                 .item(itemRecord)
                 .build();
         ShopProcess order = repo.save(process);

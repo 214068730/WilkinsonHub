@@ -27,6 +27,11 @@ public class Orderline implements Serializable {
         this.productID = orderLineBuilder.productID;
     }
 
+    public Long getOrderID(){return this.orderID;}
+
+    public Long getProductID(){return this.productID;}
+    public int getQuantity(){return this.quantity;}
+
     public static class OrderLineBuilder{
         Long orderID;
         Long productID;
@@ -40,6 +45,7 @@ public class Orderline implements Serializable {
             this.productID = productID;
             return this;
         }
+
 
         public OrderLineBuilder copy(Orderline orderline){
             this.orderID = orderline.productID;

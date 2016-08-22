@@ -9,7 +9,7 @@ import droid_backend.domain.shop.ShopProcess;
  * Created by Siraaj on 08/03/2016.
  */
 public class ProcessFactory {
-    public static ShopProcess startProcess(Long orderNo, Customer customer, Employee employee,Item item){
-        return new ShopProcess.BuildProcess().orderNo(orderNo).customer(customer).employee(employee).item(item).build();
+    public static ShopProcess startProcess(Long orderNo, int customerID, int employee,Item item){
+        return new ShopProcess.BuildProcess().orderNo(orderNo).customer(customerID).employee(employee).build();
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
  * Hello world!
@@ -14,11 +15,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableAutoConfiguration
 @EnableWebMvc
 @ComponentScan
-public class App
+public class App extends WebMvcConfigurerAdapter
 {
     public static void main( String[] args )
     {
 
         SpringApplication.run(App.class, args);
+        System.out.print("hello world");
     }
 }

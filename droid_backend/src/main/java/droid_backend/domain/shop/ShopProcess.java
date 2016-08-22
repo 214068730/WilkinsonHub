@@ -20,42 +20,41 @@ public class ShopProcess implements PaymentMethod, ItemCollection,PrintReciepts,
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     Long orderNo;
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "item_id")
-    Item item;
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer_id")
-    Customer customer;
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "employee_id")
-    Employee employee;
-   // ArrayList<Item> list;
-    Date datePurchased;
+    int customerID;
+    int employeeID;
 
+    Date datePurchased;
+    // ArrayList<Item> list;
     private ShopProcess(){}
 
     public Long getOrderNo() {
         return orderNo;
     }
 
-    public Date getDate() {
-        return datePurchased;
-    }
+
 
     public ShopProcess(BuildProcess purchaseBuilder){
-        DateFormat dateFormat;
+
         this.orderNo = purchaseBuilder.orderNo;
-        this.customer = purchaseBuilder.customer;
-        this.employee = purchaseBuilder.employee;
-        this.item = purchaseBuilder.item;
-        dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-        datePurchased = new Date();
+        this.customerID = purchaseBuilder.customerID;
+        this.employeeID = purchaseBuilder.employeeID;
+        this.datePurchased = purchaseBuilder.datePurchased;
        // list = new ArrayList<Item>();
     }
 
+    public int getCustomerID(){
+        return this.customerID;
+    }
+
+    public int getEmployeeID(){return this.employeeID;}
+
+    public Date getDate() {
+        return this.datePurchased;
+    }
     public void add(Item item){
         //list.add(item);
     }
+
 
     public void printReciept(){
         /*System.out.println("Receipt\n\t\t\t\t"+dateFormat.format(date));
@@ -78,16 +77,17 @@ public class ShopProcess implements PaymentMethod, ItemCollection,PrintReciepts,
 
     @Override
     public void collectionType(String collectionType) {
-        System.out.println(customer.getCustName());
-        System.out.println("Has requested requested:"+collectionType);
+       /* System.out.println(customer.getCustName());
+        System.out.println("Has requested requested:"+collectionType);*/
     }
 
 
     public static class BuildProcess{
         Long orderNo;
         Item item;
-        Customer customer;
-        Employee employee;
+        int customerID;
+        int employeeID;
+        Date datePurchased;
 
 
         public BuildProcess orderNo(Long orderNo){
@@ -95,8 +95,8 @@ public class ShopProcess implements PaymentMethod, ItemCollection,PrintReciepts,
             return this;
         }
 
-        public BuildProcess customer(Customer customer){
-            this.customer = customer;
+        public BuildProcess customer(int customerID){
+            this.customerID = customerID;
             return this;
         }
 
@@ -105,21 +105,43 @@ public class ShopProcess implements PaymentMethod, ItemCollection,PrintReciepts,
             return this;
         }
 
-        public BuildProcess employee(Employee employee){
-            this.employee = employee;
+        public BuildProcess employee(int employeeID){
+            this.employeeID = employeeID;
+            return this;
+        }
+
+        public BuildProcess date(){
+            DateFormat dateFormat;
+            dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+            datePurchased = new Date();
             return this;
         }
 
         public BuildProcess copy(ShopProcess order){
             this.orderNo = order.orderNo;
-            this.customer = order.customer;
-            this.employee = order.employee;
-            this.item = order.item;
+            this.customerID = order.customerID;
+            this.employeeID = order.employeeID;
             return this;
         }
 
-        public ShopProcess build(){
+        public ShopProcess build()
+        {
+
             return new ShopProcess(this);
         }
+    }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ShopProcess order = (ShopProcess) o;
+
+        return orderNo == order.orderNo;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (orderNo ^ (orderNo >>> 32));
     }
 }

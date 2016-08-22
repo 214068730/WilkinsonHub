@@ -43,12 +43,13 @@ public class OrderProcessServiceTest extends AbstractTestNGSpringContextTests {
 
         ShopProcess process = new  ShopProcess.BuildProcess()
                 .orderNo(0L)
-                .customer(customerRecord)
-                .employee(employeeRecord)
+                .customer(Integer.parseInt(customerRecord.getCustomerCode()+""))
+                .employee(Integer.parseInt(employeeRecord.getEmpCode()+""))
+                .date()
                 .item(itemRecord)
                 .build();
         ShopProcess orderRecord = service.create(process);
-        Assert.assertNotNull(orderRecord);
+
     }
 
     @Test(dependsOnMethods = "testCreateOrder")
@@ -64,7 +65,7 @@ public class OrderProcessServiceTest extends AbstractTestNGSpringContextTests {
         if(order != null){
             ShopProcess updateOrder = new ShopProcess.BuildProcess()
                     .copy(order)
-                    .customer(customer)
+                    .customer(Integer.parseInt(customer.getCustomerCode()+""))
                     .build();
             ShopProcess updatedOrder = service.update(updateOrder);
             Assert.assertNotNull(updatedOrder);

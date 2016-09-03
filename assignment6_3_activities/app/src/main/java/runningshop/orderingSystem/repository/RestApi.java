@@ -2,6 +2,8 @@ package runningshop.orderingSystem.repository;
 
 import java.util.List;
 
+import runningshop.orderingSystem.domain.customer.Customer;
+
 /**
  * Created by Siraaj on 09/02/2016.
  */
@@ -9,7 +11,7 @@ import java.util.List;
 public interface RestApi<S,ID> {
     S get(ID id);
 
-    String post(S entity);
+    void post(S entity);
 
     String put(S entity);
 

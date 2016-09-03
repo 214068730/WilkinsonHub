@@ -22,7 +22,7 @@ import runningshop.orderingSystem.repository.customer.CustomerRepository;
  */
 public class CustomerRepositoryImpl extends SQLiteOpenHelper implements CustomerRepository{
 
-    public static final String TABLE_NAME="customer";
+   public static final String TABLE_NAME="customer";
     private SQLiteDatabase db;
 
     public static final String COLUMN_ID = "id";
@@ -122,7 +122,7 @@ public class CustomerRepositoryImpl extends SQLiteOpenHelper implements Customer
             ContentValues values = new ContentValues();
 //            values.put(COLUMN_ID, entity.getCustomerCode());
             values.put(COLUMN_FIRSTNAME, entity.getCustName());
-            values.put(COLUMN_POSTAL, entity.getPostalCode());
+           // values.put(COLUMN_POSTAL, entity.getPostalCode());
             values.put(COLUMN_STREETNAME, entity.getStreetName());
             values.put(COLUMN_SUBURB, entity.getSuburb());
 
@@ -142,7 +142,7 @@ public class CustomerRepositoryImpl extends SQLiteOpenHelper implements Customer
         ContentValues values = new ContentValues();
         values.put(COLUMN_ID, entity.getCustomerCode());
         values.put(COLUMN_FIRSTNAME, entity.getCustName());
-        values.put(COLUMN_POSTAL, entity.getPostalCode());
+        //values.put(COLUMN_POSTAL, entity.getPostalCode());
         values.put(COLUMN_STREETNAME, entity.getStreetName());
         values.put(COLUMN_SUBURB, entity.getSuburb());
 

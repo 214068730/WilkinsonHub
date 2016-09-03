@@ -1,20 +1,26 @@
 package runningshop.orderingSystem.activities.customers;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
+
 import runningshop.orderingSystem.R;
-import runningshop.orderingSystem.conf.util.App;
+import runningshop.orderingSystem.activities.CustomerMenu;
 import runningshop.orderingSystem.domain.address.AddressVO;
 import runningshop.orderingSystem.domain.customer.Customer;
-import runningshop.orderingSystem.services.apiservices.ApiCustomerService;
-import runningshop.orderingSystem.services.apiservices.Impl.ApiCustomerServiceImpl;
-import runningshop.orderingSystem.services.customer.CustomerService;
-import runningshop.orderingSystem.services.customer.Impl.CustomerServiceImpl;
+import runningshop.orderingSystem.factories.customer.CustomerAddressFactory;
+import runningshop.orderingSystem.factories.customer.CustomerFactory;
 
 public class ConfirmCustomer extends AppCompatActivity {
 
@@ -23,6 +29,8 @@ public class ConfirmCustomer extends AppCompatActivity {
     String custStreet;
     String custSuburb ;
     String postal;
+    private Customer customer;
+    private AddressVO address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,31 +55,54 @@ public class ConfirmCustomer extends AppCompatActivity {
         suburb.setText(custSuburb);
         postalCode.setText(postal);
 
-
+        /*AddressVO address = new AddressVO.AddressBuilder()
+                .streetName(custStreet)
+                .suburb(custSuburb)
+                .postalCode(postal)
+                .build();
+        customer = new Customer.CustomerBuild()
+                .custName(custName)
+                .address(address)
+                .build();*/
+        address = CustomerAddressFactory.getCustomerAddress(postalCode.getText().toString(),street.getText().toString(),suburb.getText().toString());
+        customer = CustomerFactory.getCustomer(0L,name.getText().toString(),address);
     }
 
     public void onClick(View view)
     {
-        //ApiCustomerService service = new ApiCustomerServiceImpl();
-        try {
-            Intent i = new Intent(this, ViewCustomer.class);
-            CustomerService cust = CustomerServiceImpl.getInstance();
-            AddressVO address = new AddressVO.AddressBuilder()
-                    .streetName(custStreet)
-                    .suburb(custSuburb)
-                    .postalCode(postal)
-                    .build();
-            Customer customer = new Customer.CustomerBuild()
-                    .custName(custName)
-                    .address(address)
-                    .build();
+//        ApiCustomerService service = new ApiCustomerServiceImpl();
+
+            Intent i = new Intent(this, CustomerMenu.class);
+           // CustomerService cust = CustomerServiceImpl.getInstance();
+
             //service.save(customer);
+           new HttpRequestTask().execute();
             Toast.makeText(this,"Added", Toast.LENGTH_SHORT).show();
-            cust.addCustomer(App.getAppContext(), customer);  //sqlite database
+           // cust.addCustomer(App.getAppContext(), customer);  //sqlite database
             startActivity(i);
             finish();
-        }catch(Exception e){
-            Toast.makeText(this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
+    }
+
+
+    private class HttpRequestTask extends AsyncTask<Void, Void, Customer> {
+        @Override
+        protected Customer doInBackground(Void... params) {
+            try {
+               final String url = "http://148.100.5.106:8080/shop/customer/create";
+                RestTemplate restTemplate = new RestTemplate();
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                HttpHeaders headers = new HttpHeaders();
+                headers.setContentType(MediaType.APPLICATION_JSON);
+                HttpEntity<Customer> httpEntity = new HttpEntity<>(customer,headers);
+                Customer cust = restTemplate.postForObject(url,httpEntity,Customer.class);
+
+            } catch (Exception e) {
+                Log.e("MainActivity", e.getMessage(), e);
+            }
+            return null;
         }
     }
 }
+
+

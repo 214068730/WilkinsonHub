@@ -6,10 +6,8 @@ import android.content.Intent;
 
 import runningshop.orderingSystem.conf.util.App;
 import runningshop.orderingSystem.domain.customer.Customer;
-import runningshop.orderingSystem.repository.RestApi;
 import runningshop.orderingSystem.repository.customer.CustomerRepository;
 import runningshop.orderingSystem.repository.customer.Impl.CustomerRepositoryImpl;
-import runningshop.orderingSystem.repository.rest.RestCustomerApi;
 import runningshop.orderingSystem.services.customer.CustomerService;
 
 /**
@@ -17,7 +15,7 @@ import runningshop.orderingSystem.services.customer.CustomerService;
  */
 public class CustomerServiceImpl extends IntentService implements CustomerService {
 
-    final RestApi<Customer,Long> rest = new RestCustomerApi();
+
 
     private final CustomerRepository repository;
     private final CustomerRepository repo;

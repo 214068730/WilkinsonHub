@@ -1,14 +1,23 @@
 package runningshop.orderingSystem.domain.address;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 
 /**
  * Created by Siraaj on 04/16/2016.
  */
 public class AddressVO  implements Serializable{
+    @JsonProperty("postalCode")
     String postalCode;
+    @JsonProperty("streetName")
     String streetName;
+    @JsonProperty("suburb")
     String suburb;
+
+
+    private AddressVO(){}
 
     public AddressVO(AddressBuilder address){
         this.postalCode = address.postalCode;

@@ -1,5 +1,9 @@
 package runningshop.orderingSystem.domain.customer;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -13,26 +17,37 @@ import runningshop.orderingSystem.domain.shop.Item;
 /**
  * Created by Siraaj on 04/14/2016.
  */
+
 public class Customer implements IComment,IRequestItem,IReturnItem,ICustomerEvents,Serializable {
+
+    @JsonProperty("customerCode")
     Long customerCode;
+    @JsonProperty("custName")
     String custName;
+    @JsonProperty("dateCreated")
+    Date dateCreated;
+
+    //Map<Long,Date> customerEventsHistory = new HashMap();
+    @JsonProperty("address")
     AddressVO address;
-    DateFormat dateFormat;
-    Date date;
-    Map<Long,Date> customerEventsHistory = new HashMap();
+    @JsonProperty("postalCode")
+    String postal;
+    @JsonProperty("streetName")
+    String stretName;
+    @JsonProperty("suburb")
+    String suburb;
 
-
-
+    public Customer(){}
 
     public Customer(CustomerBuild customerBuild){
+        DateFormat dateFormat;
         customerCode = customerBuild.customerCode;
         custName = customerBuild.custName;
-        dateFormat = customerBuild.dateFormat;
-        date = customerBuild.date;
+        dateCreated = customerBuild.dateCreated;
         address = customerBuild.address;
-        dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        date = new Date();
-        customerAccountCreated();
+        dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        dateCreated = new Date();
+        //customerAccountCreated();
     }
 
     public Long getCustomerCode() {
@@ -81,17 +96,17 @@ public class Customer implements IComment,IRequestItem,IReturnItem,ICustomerEven
 
     @Override
     public void customerAccountCreated() {
-        customerEventsHistory.put(customerCode, date);
+        // customerEventsHistory.put(customerCode, date);
 
     }
 
     public void viewCustomerAccount(Long customerCode){
-        if(!customerEventsHistory.get(customerCode).equals(null)) {
+        /*if(!customerEventsHistory.get(customerCode).equals(null)) {
             System.out.println("Account Created on");
             System.out.println(customerEventsHistory.get(customerCode));
             System.out.println("Account number: "+customerCode);
             System.out.println("Customer Name: "+custName);
-        }
+        }*/
     }
 
     public void viewCustomer(){
@@ -105,7 +120,9 @@ public class Customer implements IComment,IRequestItem,IReturnItem,ICustomerEven
         Long customerCode;
         String custName;
         DateFormat dateFormat;
-        Date date;
+        @JsonProperty("address")
+        Date dateCreated;
+
         AddressVO address;
 
 
@@ -138,4 +155,20 @@ public class Customer implements IComment,IRequestItem,IReturnItem,ICustomerEven
 
         }
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Customer customer = (Customer) o;
+
+        return customerCode == customer.customerCode;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (customerCode ^ (customerCode >>> 32));
+    }
+
 }

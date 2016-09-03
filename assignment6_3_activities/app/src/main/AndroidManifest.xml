@@ -6,14 +6,14 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name="runningshop.orderingSystem.conf.util.App"
+        android:name=".conf.util.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="runningshop.orderingSystem.activities.CustomerMenu"
+            android:name=".activities.CustomerMenu"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -26,50 +26,51 @@
         </activity>
 
         <service
-            android:name="runningshop.orderingSystem.services.customer.Impl.CustomerServiceImpl"
+            android:name=".services.customer.Impl.CustomerServiceImpl"
             android:enabled="true"
             android:exported="false" />
         <service
-            android:name="runningshop.orderingSystem.services.shop.Impl.AddSupplierServiceImpl"
+            android:name=".services.shop.Impl.AddSupplierServiceImpl"
             android:enabled="true"
             android:exported="false" />
         <service
-            android:name="runningshop.orderingSystem.services.shop.Impl.AddItemServiceImpl"
+            android:name=".services.shop.Impl.AddItemServiceImpl"
             android:enabled="true"
             android:exported="false" />
         <service
-            android:name="runningshop.orderingSystem.services.employee.Impl.AddEmployeeServiceImpl"
+            android:name=".services.employee.Impl.AddEmployeeServiceImpl"
             android:enabled="true"
             android:exported="false" />
         <service
-            android:name="runningshop.orderingSystem.services.employee.Impl.EmployeeLoginImpl"
+            android:name=".services.employee.Impl.EmployeeLoginImpl"
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name="runningshop.orderingSystem.services.shop.Impl.SupplierRemoveServiceImpl"
+            android:name=".services.shop.Impl.SupplierRemoveServiceImpl"
             android:exported="false" />
 
-        <activity android:name="runningshop.orderingSystem.activities.customers.ConfirmCustomer" />
-        <activity android:name="runningshop.orderingSystem.activities.customers.ViewCustomer" />
-        <activity android:name="runningshop.orderingSystem.activities.customers.RegisterCustomer" />
+        <activity android:name=".activities.customers.ConfirmCustomer" />
+        <activity android:name=".activities.customers.ViewCustomer" />
+        <activity android:name=".activities.customers.RegisterCustomer" />
 
         <service
-            android:name="runningshop.orderingSystem.services.customer.Impl.ViewAllCustomers"
+            android:name=".services.customer.Impl.ViewAllCustomers"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name="runningshop.orderingSystem.activities.employees.EmployeeMenu" />
+        <activity android:name=".activities.employees.EmployeeMenu" />
         <activity
-            android:name="runningshop.orderingSystem.activities.employees.RegisterEmployee"
+            android:name=".activities.employees.RegisterEmployee"
             android:label="@string/title_activity_register_employee" />
         <activity
-            android:name="runningshop.orderingSystem.activities.employees.EmployeeConfirm"
+            android:name=".activities.employees.EmployeeConfirm"
             android:label="@string/title_activity_employee_confirm" />
         <activity
-            android:name="runningshop.orderingSystem.activities.employees.ViewEmployees"
+            android:name=".activities.employees.ViewEmployees"
             android:label="@string/title_activity_view_employees" />
-        <activity android:name="runningshop.orderingSystem.activities.customers.Delete" />
-        <activity android:name="runningshop.orderingSystem.activities.customers.Update"></activity>
+        <activity android:name=".activities.customers.Delete" />
+        <activity android:name=".activities.customers.Update" />
+
     </application>
 
 </manifest>

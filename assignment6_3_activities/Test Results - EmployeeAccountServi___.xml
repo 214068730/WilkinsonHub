@@ -2,11 +2,11 @@
     <count name="total" value="4"/>
     <count name="error" value="1"/>
     <count name="passed" value="3"/>
-    <suite duration="26" name="runningshop.assignment7.services.employee.EmployeeAccountServiceTest" status="error">
+    <suite duration="26" name="runningshop.orderingSystem.services.employee.EmployeeAccountServiceTest" status="error">
         <test duration="26" name="testActivateAccount" status="error">
             <output type="stderr">java.lang.NullPointerException&#13;
                 at
-                runningshop.assignment7.services.employee.EmployeeAccountServiceTest.testActivateAccount(EmployeeAccountServiceTest.java:46)&#13;
+                runningshop.orderingSystem.services.employee.EmployeeAccountServiceTest.testActivateAccount(EmployeeAccountServiceTest.java:46)&#13;
                 at java.lang.reflect.Method.invokeNative(Native Method)&#13;
                 at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:190)&#13;
                 at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:175)&#13;

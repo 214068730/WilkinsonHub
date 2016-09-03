@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="runningshop.assignment7">
+    package="runningshop.orderingSystem">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".conf.util.App"
+        android:name="runningshop.orderingSystem.conf.util.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.Home"
+            android:name="runningshop.orderingSystem.activities.CustomerMenu"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -23,33 +26,50 @@
         </activity>
 
         <service
-            android:name=".services.customer.Impl.CustomerServiceImpl"
+            android:name="runningshop.orderingSystem.services.customer.Impl.CustomerServiceImpl"
             android:enabled="true"
             android:exported="false" />
         <service
-            android:name=".services.shop.Impl.AddSupplierServiceImpl"
+            android:name="runningshop.orderingSystem.services.shop.Impl.AddSupplierServiceImpl"
             android:enabled="true"
             android:exported="false" />
         <service
-            android:name=".services.shop.Impl.AddItemServiceImpl"
+            android:name="runningshop.orderingSystem.services.shop.Impl.AddItemServiceImpl"
             android:enabled="true"
             android:exported="false" />
         <service
-            android:name=".services.employee.Impl.AddEmployeeServiceImpl"
+            android:name="runningshop.orderingSystem.services.employee.Impl.AddEmployeeServiceImpl"
             android:enabled="true"
             android:exported="false" />
         <service
-            android:name=".services.employee.Impl.EmployeeLoginImpl"
+            android:name="runningshop.orderingSystem.services.employee.Impl.EmployeeLoginImpl"
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".services.shop.Impl.SupplierRemoveServiceImpl"
+            android:name="runningshop.orderingSystem.services.shop.Impl.SupplierRemoveServiceImpl"
             android:exported="false" />
 
-        <activity android:name=".activities.AddCustomerAddresss" />
-        <activity android:name=".activities.ConfirmCustomer" />
-        <activity android:name=".activities.ViewCustomer" />
-        <activity android:name=".activities.RegisterCustomer"></activity>
+        <activity android:name="runningshop.orderingSystem.activities.customers.ConfirmCustomer" />
+        <activity android:name="runningshop.orderingSystem.activities.customers.ViewCustomer" />
+        <activity android:name="runningshop.orderingSystem.activities.customers.RegisterCustomer" />
+
+        <service
+            android:name="runningshop.orderingSystem.services.customer.Impl.ViewAllCustomers"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name="runningshop.orderingSystem.activities.employees.EmployeeMenu" />
+        <activity
+            android:name="runningshop.orderingSystem.activities.employees.RegisterEmployee"
+            android:label="@string/title_activity_register_employee" />
+        <activity
+            android:name="runningshop.orderingSystem.activities.employees.EmployeeConfirm"
+            android:label="@string/title_activity_employee_confirm" />
+        <activity
+            android:name="runningshop.orderingSystem.activities.employees.ViewEmployees"
+            android:label="@string/title_activity_view_employees" />
+        <activity android:name="runningshop.orderingSystem.activities.customers.Delete" />
+        <activity android:name="runningshop.orderingSystem.activities.customers.Update"></activity>
     </application>
 
 </manifest>

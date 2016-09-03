@@ -7,8 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="runningshop.assignment7.activities.ConfirmCustomer"
-    android:background="#eccccc">
+    tools:context=".activities.customers.ConfirmCustomer"
+    >
 
     <TextView
         android:layout_width="wrap_content"
@@ -17,37 +17,6 @@
         android:text="Confirm Customer"
         android:id="@+id/lblConfirmCustomer"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="name"
-        android:id="@+id/lblName"
-        android:layout_marginTop="64dp"
-        android:layout_below="@+id/lblConfirmCustomer"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Street"
-        android:id="@+id/lblStreet"
-        android:layout_below="@+id/lblName"
-        android:layout_alignRight="@+id/lblName"
-        android:layout_alignEnd="@+id/lblName"
-        android:layout_marginTop="57dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="postalCode"
-        android:id="@+id/lblPostal"
-        android:layout_marginTop="57dp"
-        android:layout_below="@+id/lblSuburb"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -64,9 +33,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="postalCode"
+        android:id="@+id/lblPostal"
+        android:layout_above="@+id/btnConfirm"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Street"
+        android:id="@+id/lblStreet"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:layout_above="@+id/lblSuburb"
+        android:layout_alignRight="@+id/lblName"
+        android:layout_alignEnd="@+id/lblName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Suburb"
         android:id="@+id/lblSuburb"
-        android:layout_centerVertical="true"
+        android:layout_marginBottom="35dp"
+        android:layout_above="@+id/lblPostal"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="name"
+        android:id="@+id/lblName"
+        android:layout_marginBottom="35dp"
+        android:layout_above="@+id/lblStreet"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

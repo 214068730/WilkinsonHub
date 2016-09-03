@@ -7,7 +7,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="runningshop.assignment7.activities.ViewCustomer">
+    tools:context=".activities.customers.ViewCustomer"
+    >
+
+    <TextView
+        android:text="Rotate screen for better view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:id="@+id/textView19" />
 
     <GridView
         android:layout_width="wrap_content"
@@ -17,5 +29,16 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_above="@+id/btnHome" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:id="@+id/btnHome"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/gridView"
+        android:layout_alignEnd="@+id/gridView"
+        android:onClick="onHome"/>
+
 </RelativeLayout>
